@@ -2,8 +2,8 @@
 
 import { useEffect } from "react";
 
-const APP_SCHEME = "ubaidraza";
-const SHARE_BASE_URL = "https://owaisrazaqadri.appwrite.network";
+const APP_SCHEME = "anasrazaattari";
+const SHARE_BASE_URL = "https://anasrazaattari.appwrite.network";
 
 export default function NaatRedirectClient({
   naatId,

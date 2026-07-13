@@ -30,7 +30,7 @@ const LiveRadioContext = createContext<LiveRadioContextType | undefined>(
 );
 
 // Your Docker container URL - only used for stream URL
-const LIVE_RADIO_STREAM_URL = "https://owaisrazaqadri.duckdns.org/live";
+const LIVE_RADIO_STREAM_URL = "https://anasrazaattari.duckdns.org/live";
 
 export const LiveRadioProvider: React.FC<{ children: React.ReactNode }> = ({
   children,

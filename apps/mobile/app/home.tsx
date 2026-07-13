@@ -306,7 +306,6 @@ export default function HomeScreen() {
             isDownloaded={ds?.isDownloaded}
             isDownloading={ds?.isDownloading}
             downloadProgress={ds?.progress}
-            isCut={!!item.cutAudio}
           />
         </View>
       );

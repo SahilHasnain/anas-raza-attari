@@ -8,10 +8,10 @@ services:
       - "3000"  # API Server
     environment:
       - APPWRITE_ENDPOINT=https://sgp.cloud.appwrite.io/v1
-      - APPWRITE_PROJECT_ID=695bb97700213f4ef5dd
+      - APPWRITE_PROJECT_ID=69907afc003b9e3d9152
       - APPWRITE_API_KEY=${APPWRITE_API_KEY}
-      - DATABASE_ID=695bba86001b50478ed4
-      - NAATS_COLLECTION_ID=695bc8e70038db72df5b
+      - DATABASE_ID=main-db
+      - NAATS_COLLECTION_ID=naats
       - CLEAR_AUDIO_CACHE_ON_START=${CLEAR_AUDIO_CACHE_ON_START:-false}
       - FALLBACK_SOURCE=${FALLBACK_SOURCE:-storage_api}
       - AUDIO_BUCKET_ID=${AUDIO_BUCKET_ID:-audio-files}

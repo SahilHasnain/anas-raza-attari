@@ -215,14 +215,7 @@ function RootLayoutContent() {
         <Tabs.Screen
           name="live"
           options={{
-            title: "Live",
-            tabBarIcon: ({ color, focused }) => (
-              <Ionicons
-                name={focused ? "radio" : "radio-outline"}
-                size={24}
-                color={color}
-              />
-            ),
+            href: null,
           }}
         />
         <Tabs.Screen

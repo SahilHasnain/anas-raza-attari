@@ -58,7 +58,7 @@ function shouldFilterVideo(channelId, title) {
 const testCases = [
   // Should KEEP (return false = don't filter)
   {
-    title: "Owais Raza Qadri - New Naat 2025",
+    title: "Anas Raza Attari - New Naat 2025",
     channelId: BAGHDADI_CHANNEL_ID,
     expected: false,
     reason: "Has Owais + Raza + Qadri",

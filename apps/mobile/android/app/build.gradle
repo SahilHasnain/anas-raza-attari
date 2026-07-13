@@ -102,9 +102,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.owaisrazaqadri'
+    namespace 'com.anasrazaattari'
     defaultConfig {
-        applicationId 'com.owaisrazaqadri'
+        applicationId 'com.anasrazaattari'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 23

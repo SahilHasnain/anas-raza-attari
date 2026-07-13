@@ -5,7 +5,7 @@ import { Text, View, Linking } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import type { AppMessage } from "@/hooks/useAppMessage";
 
-const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.owaisrazaqadri";
+const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.anasrazaattari";
 
 interface Props {
   message: AppMessage;

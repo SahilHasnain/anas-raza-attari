@@ -167,7 +167,7 @@ export function AnimatedHeader({
                 className="text-lg font-semibold"
                 style={{ color: colors.text.primary }}
               >
-                Owais Raza Qadri
+                Anas Raza Attari
               </Text>
             </View>
 

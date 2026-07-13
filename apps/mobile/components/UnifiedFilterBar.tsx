@@ -118,7 +118,7 @@ const UnifiedFilterBar: React.FC<UnifiedFilterBarProps> = ({
     currentChannel = channelOptions.find((c) => c.id === selectedChannelId) || channelOptions[0];
   }
   const currentDuration = durationFilters.find((f) => f.value === selectedDuration);
-  const hasActiveFilters = selectedSort !== "forYou" || selectedChannelId !== null || selectedDuration !== "all" || pureOnly;
+  const hasActiveFilters = selectedSort !== "forYou" || selectedChannelId !== null || selectedDuration !== "all";
 
   return (
     <>
@@ -160,20 +160,10 @@ const UnifiedFilterBar: React.FC<UnifiedFilterBarProps> = ({
               <Text className="font-semibold text-sm ml-2" style={{ color: selectedDuration !== "all" ? colors.text.primary : "#d4d4d8" }}>{currentDuration?.label}</Text>
             </Pressable>
 
-            {/* Pure Chip */}
-            <Pressable
-              onPress={() => onPureOnlyChange?.(!pureOnly)}
-              className="mr-3 px-4 py-2.5 rounded-full flex-row items-center"
-              style={{ backgroundColor: pureOnly ? colors.accent.primary : colors.background.tertiary, minHeight: 44 }}
-            >
-              <Ionicons name="cut-outline" size={16} color={pureOnly ? "#fff" : "#d4d4d8"} />
-              <Text className="font-semibold text-sm ml-2" style={{ color: pureOnly ? "#fff" : "#d4d4d8" }}>Pure</Text>
-            </Pressable>
-
             {/* Clear */}
             {hasActiveFilters && (
               <Pressable
-                onPress={() => { onSortChange("forYou"); onChannelChange(null); onDurationChange("all"); onPureOnlyChange?.(false); }}
+                onPress={() => { onSortChange("forYou"); onChannelChange(null); onDurationChange("all"); }}
                 className="px-4 py-2.5 rounded-full flex-row items-center"
                 style={{ backgroundColor: colors.background.secondary, minHeight: 44 }}
               >
@@ -203,20 +193,6 @@ const UnifiedFilterBar: React.FC<UnifiedFilterBarProps> = ({
           >
             <Text className="text-xl font-bold" style={{ color: colors.text.primary }}>Filters</Text>
             <View className="flex-row items-center">
-              <Pressable
-                onPress={() => onPureOnlyChange?.(!pureOnly)}
-                className="flex-row items-center mr-4"
-                style={{ minHeight: 44 }}
-                accessibilityRole="switch"
-                accessibilityState={{ checked: pureOnly }}
-                accessibilityLabel="Pure only filter"
-              >
-                <Ionicons name="cut-outline" size={16} color={pureOnly ? colors.accent.primary : colors.text.tertiary} style={{ marginRight: 6 }} />
-                <Text className="text-sm font-semibold" style={{ color: pureOnly ? colors.accent.primary : colors.text.tertiary, marginRight: 8 }}>Pure</Text>
-                <View style={{ width: 40, height: 22, borderRadius: 11, backgroundColor: pureOnly ? colors.accent.primary : colors.background.elevated, justifyContent: "center", paddingHorizontal: 2 }}>
-                  <View style={{ width: 18, height: 18, borderRadius: 9, backgroundColor: "#fff", alignSelf: pureOnly ? "flex-end" : "flex-start" }} />
-                </View>
-              </Pressable>
               <Pressable onPress={handleClose} style={{ minHeight: 44, minWidth: 44, justifyContent: "center", alignItems: "center" }}>
                 <Ionicons name="close" size={24} color={colors.text.secondary} />
               </Pressable>

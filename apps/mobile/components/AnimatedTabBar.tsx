@@ -35,6 +35,7 @@ export function AnimatedTabBar({
     return (
       route.name !== "video" &&
       route.name !== "player" &&
+      route.name !== "live" &&
       route.name !== "naat" &&
       !route.name.startsWith("naat/") &&
       route.name !== "+not-found" &&

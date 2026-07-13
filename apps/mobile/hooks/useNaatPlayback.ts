@@ -81,8 +81,7 @@ export function useNaatPlayback(displayData: Naat[]) {
     ): Promise<boolean> => {
       await storageService.addToWatchHistory(naat.$id);
 
-      // Always prioritize cutAudio over audioId
-      const audioId = naat.cutAudio || naat.audioId;
+      const audioId = naat.audioId;
 
       if (!audioId) {
         if (fallbackMode === "auto-video") {
@@ -99,8 +98,6 @@ export function useNaatPlayback(displayData: Naat[]) {
 
       console.log(`[useNaatPlayback] Playing audio for "${naat.title}":`, {
         audioId,
-        isCutAudio: !!naat.cutAudio,
-        hasOriginalAudio: !!naat.audioId,
       });
 
       try {
@@ -178,7 +175,6 @@ export function useNaatPlayback(displayData: Naat[]) {
       if (!naat) return;
 
       console.log(`[useNaatPlayback] Naat pressed: "${naat.title}"`, {
-        cutAudio: naat.cutAudio,
         audioId: naat.audioId,
       });
       
@@ -187,8 +183,7 @@ export function useNaatPlayback(displayData: Naat[]) {
       try {
         const savedMode = await storageService.loadPlaybackMode();
         if (savedMode === "video") {
-          // For video mode, use cutAudio if available
-          const preferredAudioId = naat.cutAudio || naat.audioId;
+          const preferredAudioId = naat.audioId;
           navigateToVideo(naat, preferredAudioId, false);
         } else {
           await loadAudioDirectly(naat);
@@ -215,7 +210,7 @@ export function useNaatPlayback(displayData: Naat[]) {
       if (!naat) return;
 
       await storageService.addToWatchHistory(naat.$id);
-      const preferredAudioId = naat.cutAudio || naat.audioId;
+      const preferredAudioId = naat.audioId;
       navigateToVideo(naat, preferredAudioId, false, true);
     },
     [getNaatById, navigateToVideo],

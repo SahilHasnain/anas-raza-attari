@@ -3,9 +3,9 @@ const path = require('path');
 const { Client, Storage, Query } = require('node-appwrite');
 
 const APPWRITE_ENDPOINT = 'https://sgp.cloud.appwrite.io/v1';
-const APPWRITE_PROJECT_ID = '695bb97700213f4ef5dd';
-const APPWRITE_API_KEY = 'standard_660d361514aaa69487835a4be50a0425800c53a92a3170d280a6d26750cd7d2b20c5edfb52c95b01d458d75f99a1ba91e7ef5ae8c09f6c6fc987fb90c819aa4899f1f4508e9fa44656b0059747bb69cfaaf8c43c52036177f5d1628da61c2862940e4291d43800690960eccef4ff5cb2a9358d88593c7bb048df5b53a769d37c';
-const YOUTUBE_API_KEY = 'AIzaSyA1rxvVTECDW4cSleuY6rZwVfKLHMuRw9Q';
+const APPWRITE_PROJECT_ID = '69907afc003b9e3d9152';
+const APPWRITE_API_KEY = process.env.APPWRITE_API_KEY || '';
+const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY || '';
 const BUCKET_ID = 'audio-files';
 const MAX_FILES = 1000;
 const YT_BATCH_SIZE = 50;
@@ -58,7 +58,7 @@ function parseDuration(d) {
 
 function deriveChannelId(title) {
   const map = {
-    'Owais Raza Qadri': 'owais-raza-qadri',
+    'Anas Raza Attari': 'anas-raza-attari',
     'Baghdadi Sound & Video': 'baghdadi-sound-video',
     'Qtv USA': 'qtv-usa',
     'Qtv Canada': 'qtv-canada',

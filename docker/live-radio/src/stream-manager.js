@@ -433,7 +433,7 @@ class StreamManager {
       '-b:a', '128k',                 // Audio bitrate
       '-f', 'mp3',                    // MP3 format for Icecast
       '-content_type', 'audio/mpeg',  // Content type
-      '-ice_name', 'Owais Raza Qadri Live Radio',
+      '-ice_name', 'Anas Raza Attari Live Radio',
       '-ice_description', 'Live Naat Radio Stream',
       '-ice_genre', 'Islamic',
       'icecast://source:hackme@localhost:8000/live'  // Icecast URL

@@ -158,7 +158,7 @@ const NaatCard: React.FC<NaatCardProps> = ({
               style={{ color: colors.text.tertiary }}
               numberOfLines={1}
             >
-              {formatViews(views)} views{isCut && " • Pure"}
+              {formatViews(views)} views
             </Text>
           </View>
         </View>

@@ -12,7 +12,7 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { id } = await params;
   const { youtubeId } = await searchParams;
-  const url = `https://owaisrazaqadri.appwrite.network/naat/${id}${
+  const url = `https://anasrazaattari.appwrite.network/naat/${id}${
     youtubeId ? `?youtubeId=${youtubeId}` : ""
   }`;
 

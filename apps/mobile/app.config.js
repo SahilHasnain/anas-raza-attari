@@ -3,32 +3,32 @@ const IS_PREVIEW = process.env.APP_VARIANT === "preview";
 
 const getUniqueIdentifier = () => {
   if (IS_DEV) {
-    return "com.owaisrazaqadri.dev";
+    return "com.anasrazaattari.dev";
   }
   if (IS_PREVIEW) {
-    return "com.owaisrazaqadri.preview";
+    return "com.anasrazaattari.preview";
   }
-  return "com.owaisrazaqadri";
+  return "com.anasrazaattari";
 };
 
 const getAppName = () => {
   if (IS_DEV) {
-    return "Owais Raza Qadri (Dev)";
+    return "Anas Raza Attari (Dev)";
   }
   if (IS_PREVIEW) {
-    return "Owais Raza Qadri (Preview)";
+    return "Anas Raza Attari (Preview)";
   }
-  return "Owais Raza Qadri";
+  return "Anas Raza Attari";
 };
 
 export default {
   expo: {
     name: getAppName(),
-    slug: "owais-raza-qadri",
+    slug: "anas-raza-attari",
     version: "1.0.0",
     orientation: "portrait",
     icon: "./assets/images/android-icon-foreground.png",
-    scheme: "ubaidraza",
+    scheme: "anasrazaattari",
     userInterfaceStyle: "automatic",
     newArchEnabled: true,
     ios: {
@@ -37,7 +37,7 @@ export default {
       infoPlist: {
         UIBackgroundModes: ["audio"],
       },
-      associatedDomains: ["applinks:owaisrazaqadri.appwrite.network"],
+      associatedDomains: ["applinks:anasrazaattari.appwrite.network"],
     },
     android: {
       versionCode: 23,
@@ -61,7 +61,7 @@ export default {
           autoVerify: true,
           data: [
             {
-              scheme: "ubaidraza",
+              scheme: "anasrazaattari",
               host: "*",
             },
           ],
@@ -73,7 +73,7 @@ export default {
           data: [
             {
               scheme: "https",
-              host: "owaisrazaqadri.appwrite.network",
+              host: "anasrazaattari.appwrite.network",
               pathPrefix: "/naat",
             },
           ],

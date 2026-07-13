@@ -315,6 +315,13 @@ async function ingestChannelVideos(databases, existingVideosMap, channelId) {
     const newViews = parseInt(video.statistics?.viewCount || "0", 10);
     const duration = parseDuration(video.contentDetails.duration);
 
+    // Filter out shorts (< 60 seconds)
+    if (duration > 0 && duration < 60) {
+      console.log(`   🚫 Filtered: ${title} (shorts ${duration}s < 60s)`);
+      filteredCount++;
+      continue;
+    }
+
     // Filter out videos greater than 1 hour (3600 seconds)
     if (duration > 3600) {
       console.log(`   🚫 Filtered: ${title} (duration ${duration}s > 3600s)`);

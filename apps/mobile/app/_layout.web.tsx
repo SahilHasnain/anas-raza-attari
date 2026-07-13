@@ -25,7 +25,6 @@ Sentry.init({
 
 const navItems = [
   { href: "/home", label: "Home", icon: "grid-outline" },
-  { href: "/live", label: "Live", icon: "radio-outline" },
   { href: "/history", label: "History", icon: "time-outline" },
 ] as const;
 
@@ -58,7 +57,7 @@ function DesktopShell() {
         >
           <View style={{ marginBottom: 28 }}>
             <Text style={{ color: "#f6f7fb", fontSize: 26, fontWeight: "700" }}>
-              Owais Raza Qadri
+              Anas Raza Attari
             </Text>
           </View>
 
