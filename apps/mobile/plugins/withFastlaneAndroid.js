@@ -58,23 +58,24 @@ function loadProjectEnv(projectRoot) {
     return env;
 }
 
+// Sentry env-writing DISABLED — uncomment to re-enable
 function writeFastlaneEnvLocal(targetDir, projectEnv) {
-    const sentryAuthToken = process.env.SENTRY_AUTH_TOKEN || projectEnv.SENTRY_AUTH_TOKEN;
-    const sentryOrg = process.env.SENTRY_ORG || projectEnv.SENTRY_ORG || "sahil-hasnain";
-    const sentryProject = process.env.SENTRY_PROJECT || projectEnv.SENTRY_PROJECT || "ubaid-raza-naats";
+    // const sentryAuthToken = process.env.SENTRY_AUTH_TOKEN || projectEnv.SENTRY_AUTH_TOKEN;
+    // const sentryOrg = process.env.SENTRY_ORG || projectEnv.SENTRY_ORG || "sahil-hasnain";
+    // const sentryProject = process.env.SENTRY_PROJECT || projectEnv.SENTRY_PROJECT || "ubaid-raza-naats";
 
-    if (!sentryAuthToken) {
-        return;
-    }
+    // if (!sentryAuthToken) {
+    //     return;
+    // }
 
-    const content = [
-        `SENTRY_AUTH_TOKEN=${sentryAuthToken}`,
-        `SENTRY_ORG=${sentryOrg}`,
-        `SENTRY_PROJECT=${sentryProject}`,
-        "",
-    ].join("\n");
+    // const content = [
+    //     `SENTRY_AUTH_TOKEN=${sentryAuthToken}`,
+    //     `SENTRY_ORG=${sentryOrg}`,
+    //     `SENTRY_PROJECT=${sentryProject}`,
+    //     "",
+    // ].join("\n");
 
-    fs.writeFileSync(path.join(targetDir, ".env.local"), content, "utf8");
+    // fs.writeFileSync(path.join(targetDir, ".env.local"), content, "utf8");
 }
 
 module.exports = function withFastlaneAndroid(config) {

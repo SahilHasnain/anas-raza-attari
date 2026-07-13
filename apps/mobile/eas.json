@@ -24,8 +24,6 @@
         "EXPO_PUBLIC_APPWRITE_LIVE_RADIO_COLLECTION_ID": "live_radio",
         "EXPO_PUBLIC_USE_SEMANTIC_SEARCH": "false",
         "EXPO_PUBLIC_DISABLE_SEARCH_SUGGESTIONS": "true",
-        "EXPO_PUBLIC_SENTRY_DSN": "https://26f7852901dbe4c65a101e2300db1d8f@o4509954219966464.ingest.de.sentry.io/4510675297501264",
-        "SENTRY_AUTH_TOKEN": "@SENTRY_AUTH_TOKEN",
         "APP_VARIANT": "development"
       }
     },
@@ -40,14 +38,12 @@
         "EXPO_PUBLIC_APPWRITE_LIVE_RADIO_COLLECTION_ID": "live_radio",
         "EXPO_PUBLIC_USE_SEMANTIC_SEARCH": "false",
         "EXPO_PUBLIC_DISABLE_SEARCH_SUGGESTIONS": "true",
-        "EXPO_PUBLIC_SENTRY_DSN": "https://26f7852901dbe4c65a101e2300db1d8f@o4509954219966464.ingest.de.sentry.io/4510675297501264",
-        "SENTRY_AUTH_TOKEN": "@SENTRY_AUTH_TOKEN",
         "APP_VARIANT": "preview"
       }
     },
     "production": {
       "autoIncrement": false,
-      "credentialsSource": "local",
+      "credentialsSource": "remote",
       "env": {
         "EXPO_PUBLIC_APPWRITE_ENDPOINT": "https://sgp.cloud.appwrite.io/v1",
         "EXPO_PUBLIC_APPWRITE_PROJECT_ID": "69907afc003b9e3d9152",
@@ -56,9 +52,7 @@
         "EXPO_PUBLIC_APPWRITE_CHANNELS_COLLECTION_ID": "channels",
         "EXPO_PUBLIC_APPWRITE_LIVE_RADIO_COLLECTION_ID": "live_radio",
         "EXPO_PUBLIC_USE_SEMANTIC_SEARCH": "false",
-        "EXPO_PUBLIC_DISABLE_SEARCH_SUGGESTIONS": "true",
-        "EXPO_PUBLIC_SENTRY_DSN": "https://26f7852901dbe4c65a101e2300db1d8f@o4509954219966464.ingest.de.sentry.io/4510675297501264",
-        "SENTRY_AUTH_TOKEN": "@SENTRY_AUTH_TOKEN"
+        "EXPO_PUBLIC_DISABLE_SEARCH_SUGGESTIONS": "true"
       }
     }
   },

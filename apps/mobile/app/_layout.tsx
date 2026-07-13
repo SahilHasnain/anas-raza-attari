@@ -52,11 +52,11 @@ import {
 import "../global.css";
 import WebRootLayout from "./_layout.web";
 
-// Initialize Sentry
+// Initialize Sentry (DISABLED — set enabled to true to re-enable)
 Sentry.init({
   dsn: process.env.EXPO_PUBLIC_SENTRY_DSN,
-  debug: false, // Disabled for cleaner console in development
-  enabled: !__DEV__, // Disable Sentry in development mode
+  debug: false,
+  enabled: false, // was: !__DEV__ — disabled across all environments
   tracesSampleRate: 1.0,
   integrations: [Sentry.reactNativeTracingIntegration()],
 });

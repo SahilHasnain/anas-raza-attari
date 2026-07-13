@@ -39,8 +39,9 @@ jobs:
       EXPO_PUBLIC_SEMANTIC_SEARCH_FUNCTION_URL: ${{ vars.EXPO_PUBLIC_SEMANTIC_SEARCH_FUNCTION_URL || '' }}
       EXPO_PUBLIC_USE_SEMANTIC_SEARCH: ${{ vars.EXPO_PUBLIC_USE_SEMANTIC_SEARCH || 'false' }}
       EXPO_PUBLIC_DISABLE_SEARCH_SUGGESTIONS: ${{ vars.EXPO_PUBLIC_DISABLE_SEARCH_SUGGESTIONS || 'true' }}
-      EXPO_PUBLIC_SENTRY_DSN: ${{ vars.EXPO_PUBLIC_SENTRY_DSN || 'https://26f7852901dbe4c65a101e2300db1d8f@o4509954219966464.ingest.de.sentry.io/4510675297501264' }}
-      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      # Sentry DISABLED — uncomment to re-enable
+      # EXPO_PUBLIC_SENTRY_DSN: ${{ vars.EXPO_PUBLIC_SENTRY_DSN || 'https://26f7852901dbe4c65a101e2300db1d8f@o4509954219966464.ingest.de.sentry.io/4510675297501264' }}
+      # SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -106,8 +107,9 @@ jobs:
           EXPO_PUBLIC_SEMANTIC_SEARCH_FUNCTION_URL=${EXPO_PUBLIC_SEMANTIC_SEARCH_FUNCTION_URL}
           EXPO_PUBLIC_USE_SEMANTIC_SEARCH=${EXPO_PUBLIC_USE_SEMANTIC_SEARCH}
           EXPO_PUBLIC_DISABLE_SEARCH_SUGGESTIONS=${EXPO_PUBLIC_DISABLE_SEARCH_SUGGESTIONS}
-          EXPO_PUBLIC_SENTRY_DSN=${EXPO_PUBLIC_SENTRY_DSN}
-          SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
+          # Sentry DISABLED — uncomment to re-enable
+          # EXPO_PUBLIC_SENTRY_DSN=${EXPO_PUBLIC_SENTRY_DSN}
+          # SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
           EOF
 
       - name: Configure Android SDK path
@@ -123,17 +125,19 @@ jobs:
         run: |
           echo "${{ secrets.PLAY_STORE_JSON_BASE64 }}" | base64 -d > /tmp/play-store-key.json
 
-      - name: Configure Sentry
-        run: |
-          cat > apps/mobile/android/sentry.properties <<'EOF'
-          defaults.url=https://sentry.io/
-          defaults.org=sahil-hasnain
-          defaults.project=ubaid-raza-naats
-          EOF
+      # Sentry DISABLED — uncomment to re-enable
+      # - name: Configure Sentry
+      #   run: |
+      #     cat > apps/mobile/android/sentry.properties <<'EOF'
+      #     defaults.url=https://sentry.io/
+      #     defaults.org=sahil-hasnain
+      #     defaults.project=ubaid-raza-naats
+      #     EOF
 
       - name: Build Android artifact
         env:
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          # Sentry DISABLED — uncomment to re-enable
+          # SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           ANDROID_KEYSTORE_PATH: /tmp/release.keystore
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
@@ -158,7 +162,8 @@ jobs:
       - name: Fastlane deploy
         if: ${{ env.APP_VARIANT == 'production' }}
         env:
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          # Sentry DISABLED — uncomment to re-enable
+          # SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SUPPLY_JSON_KEY: /tmp/play-store-key.json
           ANDROID_APPLICATION_ID: com.anasrazaattari
           PLAY_TRACK: production

@@ -40,7 +40,7 @@ export default {
       associatedDomains: ["applinks:anasrazaattari.appwrite.network"],
     },
     android: {
-      versionCode: 23,
+      versionCode: 1,
       adaptiveIcon: {
         foregroundImage: "./assets/images/android-icon-foreground.png",
         backgroundColor: "#000000",
@@ -96,13 +96,14 @@ export default {
           backgroundColor: "#000000",
         }
       ],
-      [
-        "@sentry/react-native",
-        {
-          organization: "sahil-hasnain",
-          project: "ubaid-raza-naats",
-        },
-      ],
+      // Sentry plugin DISABLED — uncomment to re-enable
+      // [
+      //   "@sentry/react-native",
+      //   {
+      //     organization: "sahil-hasnain",
+      //     project: "ubaid-raza-naats",
+      //   },
+      // ],
       [
         "expo-speech-recognition",
         {
@@ -123,7 +124,7 @@ export default {
     extra: {
       router: {},
       eas: {
-        "projectId": "f5025967-41a5-4d6d-b430-c89bada9c40b"
+        "projectId": "34c43ca5-f0b1-43dc-9d29-b8c3fc054151"
       },
     },
   },

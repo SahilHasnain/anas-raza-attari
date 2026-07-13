@@ -15,10 +15,11 @@ import { Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import "../global.css";
 
+// Sentry (DISABLED — set enabled to true to re-enable)
 Sentry.init({
   dsn: process.env.EXPO_PUBLIC_SENTRY_DSN,
   debug: false,
-  enabled: !__DEV__,
+  enabled: false, // was: !__DEV__ — disabled across all environments
   tracesSampleRate: 1.0,
   integrations: [Sentry.reactNativeTracingIntegration()],
 });
