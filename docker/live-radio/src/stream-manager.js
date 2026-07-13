@@ -250,7 +250,7 @@ class StreamManager {
    */
   async fetchFromStaticJSON() {
     const staticJsonUrl = process.env.STATIC_JSON_URL || 
-      'https://cdn.jsdelivr.net/gh/sahilhasnain/naat-collection@main/static-exports/radio-naats.json';
+      'https://cdn.jsdelivr.net/gh/SahilHasnain/anas-raza-attari@main/static-exports/radio-naats.json';
     
     console.log(`📥 Fetching from: ${staticJsonUrl}`);
     

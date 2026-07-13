@@ -170,7 +170,7 @@ axios.get(STATIC_JSON_URL)
 **Configuration:**
 ```bash
 FALLBACK_SOURCE=static_json
-STATIC_JSON_URL=https://cdn.jsdelivr.net/gh/sahilhasnain/naat-collection@main/static-exports/radio-naats.json
+STATIC_JSON_URL=https://cdn.jsdelivr.net/gh/SahilHasnain/anas-raza-attari@main/static-exports/radio-naats.json
 ```
 
 **Pros:**
@@ -218,7 +218,7 @@ STORAGE_API_MAX_FILES=1000
 # Options: 500 (~5 reads), 1000 (~10 reads), 2000 (~20 reads), 5000 (~50 reads)
 
 # For static_json fallback
-STATIC_JSON_URL=https://cdn.jsdelivr.net/gh/sahilhasnain/naat-collection@main/static-exports/radio-naats.json
+STATIC_JSON_URL=https://cdn.jsdelivr.net/gh/SahilHasnain/anas-raza-attari@main/static-exports/radio-naats.json
 
 # Appwrite config
 AUDIO_BUCKET_ID=audio-files
@@ -328,7 +328,7 @@ git push
 
 # 3. Switch to static JSON
 FALLBACK_SOURCE=static_json
-STATIC_JSON_URL=https://cdn.jsdelivr.net/gh/sahilhasnain/naat-collection@main/static-exports/radio-naats.json
+STATIC_JSON_URL=https://cdn.jsdelivr.net/gh/SahilHasnain/anas-raza-attari@main/static-exports/radio-naats.json
 ```
 - ✅ Zero cost
 - ✅ Full metadata

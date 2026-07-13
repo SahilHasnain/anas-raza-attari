@@ -26,9 +26,9 @@ const FALLBACK_CONFIG = {
 
 export const STATIC_FALLBACK_URLS = {
   NAATS: process.env.EXPO_PUBLIC_STATIC_NAATS_URL || 
-    'https://raw.githubusercontent.com/sahilhasnain/naat-collection/main/static-exports/naats-export.json',
+    'https://raw.githubusercontent.com/SahilHasnain/anas-raza-attari/main/static-exports/naats-export.json',
   CHANNELS: process.env.EXPO_PUBLIC_STATIC_CHANNELS_URL ||
-    'https://raw.githubusercontent.com/sahilhasnain/naat-collection/main/static-exports/channels-export.json',
+    'https://raw.githubusercontent.com/SahilHasnain/anas-raza-attari/main/static-exports/channels-export.json',
 };
 
 // Map Expo environment variables to shared config format with fallbacks

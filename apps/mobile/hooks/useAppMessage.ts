@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 
 const MESSAGE_URL =
-  "https://raw.githubusercontent.com/sahilhasnain/naat-collection/main/static-exports/app-message.json";
+  "https://raw.githubusercontent.com/SahilHasnain/anas-raza-attari/main/static-exports/app-message.json";
 const LAST_SEEN_KEY = "@app_message_last_seen_id";
 
 export interface AppMessage {
