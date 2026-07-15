@@ -16,7 +16,7 @@ export interface ShareOptions {
 
 // Deep link scheme for the app
 const APP_SCHEME = "anasrazaattari";
-const SHARE_BASE_URL = "https://anasrazaattari.appwrite.network";
+const SHARE_BASE_URL = "https://anasrazaattari.expo.app";
 
 /**
  * Generate a deep link URL that opens in the app

@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 
 const APP_SCHEME = "anasrazaattari";
-const SHARE_BASE_URL = "https://anasrazaattari.appwrite.network";
+const SHARE_BASE_URL = "https://anasrazaattari.expo.app";
 
 export default function NaatRedirectClient({
   naatId,

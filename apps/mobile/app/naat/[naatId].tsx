@@ -3,6 +3,7 @@ import React from "react";
 import { ActivityIndicator, Platform, StyleSheet, Text, View } from "react-native";
 
 const APP_SCHEME = "anasrazaattari";
+const SHARE_BASE_URL = "https://anasrazaattari.expo.app";
 
 export default function SharedNaatRedirectScreen() {
   const router = useRouter();
@@ -33,7 +34,7 @@ export default function SharedNaatRedirectScreen() {
     if (Platform.OS === "web" && typeof window !== "undefined") {
       const fallbackTimer = window.setTimeout(() => {
         window.location.replace(youtubeUrl);
-      }, 1500);
+      }, 3000);
 
       window.location.replace(appUrl);
 
