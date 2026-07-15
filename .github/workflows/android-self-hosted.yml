@@ -116,14 +116,12 @@ jobs:
         run: |
           printf "sdk.dir=%s\n" "$ANDROID_SDK_ROOT" > apps/mobile/android/local.properties
 
-      - name: Install Android SDK components
+      - name: Install CMake
         run: |
-          yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --install \
-            "cmake;3.22.1" \
-            "ndk;27.1.12297006" \
-          || yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --install \
-            "cmake;3.22.1" \
-            "ndk;27.1.12297006"
+          yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --install "cmake;3.22.1" || true
+          echo "y" | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --licenses || true
+        env:
+          JAVA_HOME: /usr/lib/jvm/temurin-17-jdk-amd64
 
       - name: Decode keystore
         run: |
