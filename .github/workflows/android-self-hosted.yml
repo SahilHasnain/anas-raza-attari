@@ -116,6 +116,15 @@ jobs:
         run: |
           printf "sdk.dir=%s\n" "$ANDROID_SDK_ROOT" > apps/mobile/android/local.properties
 
+      - name: Install Android SDK components
+        run: |
+          yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --install \
+            "cmake;3.22.1" \
+            "ndk;27.1.12297006" \
+          || yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --install \
+            "cmake;3.22.1" \
+            "ndk;27.1.12297006"
+
       - name: Decode keystore
         run: |
           echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > /tmp/release.keystore
