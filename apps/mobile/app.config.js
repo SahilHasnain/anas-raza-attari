@@ -40,7 +40,7 @@ export default {
       associatedDomains: ["applinks:anasrazaattari.expo.app"],
     },
     android: {
-      versionCode: 2,
+      versionCode: 3,
       adaptiveIcon: {
         foregroundImage: "./assets/images/android-icon-foreground.png",
         backgroundColor: "#000000",
