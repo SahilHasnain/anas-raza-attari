@@ -1,34 +1,36 @@
+const brand = require("./brand.config.js");
+
 const IS_DEV = process.env.APP_VARIANT === "development";
 const IS_PREVIEW = process.env.APP_VARIANT === "preview";
 
 const getUniqueIdentifier = () => {
   if (IS_DEV) {
-    return "com.anasrazaattari.dev";
+    return brand.app.packageIdDev;
   }
   if (IS_PREVIEW) {
-    return "com.anasrazaattari.preview";
+    return brand.app.packageIdPreview;
   }
-  return "com.anasrazaattari";
+  return brand.app.packageId;
 };
 
 const getAppName = () => {
   if (IS_DEV) {
-    return "Anas Raza Attari (Dev)";
+    return `${brand.app.name} (Dev)`;
   }
   if (IS_PREVIEW) {
-    return "Anas Raza Attari (Preview)";
+    return `${brand.app.name} (Preview)`;
   }
-  return "Anas Raza Attari";
+  return brand.app.name;
 };
 
 export default {
   expo: {
     name: getAppName(),
-    slug: "anas-raza-attari",
+    slug: brand.app.slug,
     version: "1.0.0",
     orientation: "portrait",
     icon: "./assets/images/android-icon-foreground.png",
-    scheme: "anasrazaattari",
+    scheme: brand.app.scheme,
     userInterfaceStyle: "automatic",
     newArchEnabled: true,
     ios: {
@@ -37,10 +39,10 @@ export default {
       infoPlist: {
         UIBackgroundModes: ["audio"],
       },
-      associatedDomains: ["applinks:anasrazaattari.expo.app"],
+      associatedDomains: [`applinks:${brand.app.applinksHost}`],
     },
     android: {
-      versionCode: 3,
+      versionCode: brand.app.versionCode,
       adaptiveIcon: {
         foregroundImage: "./assets/images/android-icon-foreground.png",
         backgroundColor: "#000000",
@@ -48,6 +50,10 @@ export default {
       edgeToEdgeEnabled: true,
       predictiveBackGestureEnabled: false,
       package: getUniqueIdentifier(),
+      notification: {
+        icon: "./assets/images/status_bar_icon.png",
+        color: "#000000",
+      },
       permissions: [
         "FOREGROUND_SERVICE",
         "FOREGROUND_SERVICE_MEDIA_PLAYBACK",
@@ -61,7 +67,7 @@ export default {
           autoVerify: true,
           data: [
             {
-              scheme: "anasrazaattari",
+              scheme: brand.app.scheme,
               host: "*",
             },
           ],
@@ -73,7 +79,7 @@ export default {
           data: [
             {
               scheme: "https",
-              host: "anasrazaattari.expo.app",
+              host: brand.app.applinksHost,
               pathPrefix: "/naat",
             },
           ],
@@ -96,14 +102,17 @@ export default {
           backgroundColor: "#000000",
         }
       ],
-      // Sentry plugin DISABLED — uncomment to re-enable
-      // [
-      //   "@sentry/react-native",
-      //   {
-      //     organization: "sahil-hasnain",
-      //     project: "ubaid-raza-naats",
-      //   },
-      // ],
+      ...(brand.sentry.enabled
+        ? [
+            [
+              "@sentry/react-native",
+              {
+                organization: brand.sentry.org,
+                project: brand.sentry.project,
+              },
+            ],
+          ]
+        : []),
       [
         "expo-speech-recognition",
         {
@@ -124,7 +133,7 @@ export default {
     extra: {
       router: {},
       eas: {
-        "projectId": "34c43ca5-f0b1-43dc-9d29-b8c3fc054151"
+        projectId: brand.eas.projectId,
       },
     },
   },

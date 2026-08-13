@@ -15,12 +15,12 @@ export interface ShareOptions {
 }
 
 // Deep link scheme for the app
-const APP_SCHEME = "anasrazaattari";
-const SHARE_BASE_URL = "https://anasrazaattari.expo.app";
+const APP_SCHEME = "ubaidraza";
+const SHARE_BASE_URL = "https://owaisrazaqadri.appwrite.network";
 
 /**
  * Generate a deep link URL that opens in the app
- * Format: anasrazaattari://naat/{naatId}?youtubeId={youtubeId}
+ * Format: ubaidraza://naat/{naatId}?youtubeId={youtubeId}
  */
 function generateDeepLink(naatId: string, youtubeId: string): string {
   return `${APP_SCHEME}://naat/${naatId}?youtubeId=${youtubeId}`;

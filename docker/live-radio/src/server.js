@@ -37,7 +37,7 @@ app.get('/api/current', (req, res) => {
       elapsedSeconds,
       startedAt: currentTrackState.startedAt
     },
-    streamUrl: 'http://anasrazaattari.duckdns.org:8000/live',
+    streamUrl: 'http://owaisrazaqadri.duckdns.org:8000/live',
     listenerCount: 0, // TODO: Get from Icecast stats
     upcomingTracks: [] // TODO: Implement upcoming tracks
   });

@@ -110,8 +110,8 @@ Health check endpoint for monitoring.
 
 - `APPWRITE_API_KEY`: Your Appwrite API key (required)
 - `APPWRITE_ENDPOINT`: Appwrite endpoint (default: https://sgp.cloud.appwrite.io/v1)
-- `APPWRITE_PROJECT_ID`: Project ID (default: 69907afc003b9e3d9152)
-- `DATABASE_ID`: Database ID (default: main-db)
+- `APPWRITE_PROJECT_ID`: Project ID (default: 695bb97700213f4ef5dd)
+- `DATABASE_ID`: Database ID (default: 695bc8e70038db72df5b)
 - `CLEAR_AUDIO_CACHE_ON_START`: Set `true` to clear cached audio (`/app/audio-cache`) at container startup
 
 ## Troubleshooting

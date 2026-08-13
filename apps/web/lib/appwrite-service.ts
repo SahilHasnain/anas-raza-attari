@@ -4,7 +4,7 @@
  * Service for interacting with Appwrite backend.
  */
 
-import { Client, Databases, Query } from "appwrite";
+import { Client, Databases, ExecutionMethod, Functions, Query } from "appwrite";
 import type {
     AppwriteConfig,
     AudioUrlResponse,
@@ -22,6 +22,7 @@ export interface AppwriteServiceOptions {
 export class AppwriteService implements IAppwriteService {
   private client: Client;
   private database: Databases;
+  private functions: Functions;
   private config: AppwriteConfig;
   private isInitialized: boolean = false;
   private onError?: (error: Error, context?: Record<string, any>) => void;
@@ -31,6 +32,7 @@ export class AppwriteService implements IAppwriteService {
     this.onError = options.onError;
     this.client = new Client();
     this.database = new Databases(this.client);
+    this.functions = new Functions(this.client);
   }
 
   private initialize(): void {
@@ -217,6 +219,33 @@ export class AppwriteService implements IAppwriteService {
         success: false,
         error: "Failed to load audio from storage.",
       };
+    }
+  }
+
+  /**
+   * Increments the in-app view count (appView) for a naat.
+   * Uses an Appwrite function for the server-side increment.
+   * Best-effort: never throws.
+   */
+  async incrementAppView(naatId: string): Promise<void> {
+    if (!naatId) {
+      return;
+    }
+
+    try {
+      this.initialize();
+      await this.functions.createExecution({
+        functionId: "increment-naat-view",
+        body: JSON.stringify({ naatId }),
+        async: true,
+        method: ExecutionMethod.POST,
+      });
+    } catch (error) {
+      console.error("[Web Appwrite] incrementAppView failed:", error);
+      this.onError?.(error as Error, {
+        context: "incrementAppView",
+        naatId,
+      });
     }
   }
 }

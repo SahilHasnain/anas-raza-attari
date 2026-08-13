@@ -1,4 +1,5 @@
 import EmptyState from "@/components/EmptyState";
+import FloatingFilterButton from "@/components/FloatingFilterButton";
 import NaatActionSheet from "@/components/NaatActionSheet";
 import NaatCard from "@/components/NaatCard";
 import { SearchFilterBar } from "@/components/SearchFilterBar";
@@ -264,10 +265,12 @@ export default function HomeScreen() {
     closeActionSheet();
 
     if (savedPlaybackMode === "audio") {
+      await storageService.savePlaybackMode("video").catch(() => {});
       await playAsVideo(selectedNaat.$id);
       return;
     }
 
+    await storageService.savePlaybackMode("audio").catch(() => {});
     await playAsAudio(selectedNaat.$id);
   }, [
     closeActionSheet,
@@ -306,6 +309,7 @@ export default function HomeScreen() {
             isDownloaded={ds?.isDownloaded}
             isDownloading={ds?.isDownloading}
             downloadProgress={ds?.progress}
+            isCut={!!item.cutAudio}
           />
         </View>
       );
@@ -539,6 +543,13 @@ export default function HomeScreen() {
             onSuggestionInsert={(s) => setSearchInput(s.text)}
           />
         </View>
+      )}
+
+      {!isSearchActive && !showSuggestionsOverlay && (
+        <FloatingFilterButton
+          onPress={() => filters.setShowFilterModal(true)}
+          hasActiveFilters={filters.hasActiveHomeFilters}
+        />
       )}
 
       <NaatActionSheet

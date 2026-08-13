@@ -250,7 +250,7 @@ class StreamManager {
    */
   async fetchFromStaticJSON() {
     const staticJsonUrl = process.env.STATIC_JSON_URL || 
-      'https://cdn.jsdelivr.net/gh/SahilHasnain/anas-raza-attari@main/static-exports/radio-naats.json';
+      'https://cdn.jsdelivr.net/gh/sahilhasnain/naat-collection@main/static-exports/radio-naats.json';
     
     console.log(`📥 Fetching from: ${staticJsonUrl}`);
     
@@ -433,7 +433,7 @@ class StreamManager {
       '-b:a', '128k',                 // Audio bitrate
       '-f', 'mp3',                    // MP3 format for Icecast
       '-content_type', 'audio/mpeg',  // Content type
-      '-ice_name', 'Anas Raza Attari Live Radio',
+      '-ice_name', 'Owais Raza Qadri Live Radio',
       '-ice_description', 'Live Naat Radio Stream',
       '-ice_genre', 'Islamic',
       'icecast://source:hackme@localhost:8000/live'  // Icecast URL

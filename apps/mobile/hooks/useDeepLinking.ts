@@ -2,7 +2,7 @@
  * Deep Linking Hook
  * 
  * Handles incoming deep links to open naats in the app
- * Format: anasrazaattari://naat/{naatId}?youtubeId={youtubeId}
+ * Format: ubaidraza://naat/{naatId}?youtubeId={youtubeId}
  */
 
 import { showErrorToast } from "@/utils/toast";
@@ -18,7 +18,7 @@ function extractSharedNaatParams(url: string): {
   const urlObj = new URL(url);
   const youtubeId = urlObj.searchParams.get("youtubeId");
 
-  if (urlObj.protocol === "anasrazaattari:") {
+  if (urlObj.protocol === "ubaidraza:") {
     const customSchemeSegments = [urlObj.host, ...urlObj.pathname.split("/")].filter(
       Boolean,
     );

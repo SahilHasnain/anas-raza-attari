@@ -3,6 +3,9 @@
  *
  * This file adapts the shared Appwrite config for Expo's environment variables.
  * Environment variables must be prefixed with EXPO_PUBLIC_ to be accessible.
+ *
+ * Brand-specific values (Appwrite project, static export repo) come from
+ * brand.config.js — the only file that differs between family repos.
  */
 
 import {
@@ -10,25 +13,27 @@ import {
     validateAppwriteConfig as validateConfig,
 } from "@naat-collection/shared";
 
-// Hardcoded fallback values
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const brand = require("../brand.config.js");
+
+// Brand-provided fallback values
 const FALLBACK_CONFIG = {
-  APPWRITE_ENDPOINT: "https://sgp.cloud.appwrite.io/v1",
-  APPWRITE_PROJECT_ID: "69907afc003b9e3d9152",
-  APPWRITE_DATABASE_ID: "main-db",
-  APPWRITE_NAATS_COLLECTION_ID: "naats",
-  APPWRITE_CHANNELS_COLLECTION_ID: "channels",
-  APPWRITE_AUDIO_CACHE_COLLECTION_ID: "audio-cache",
+  APPWRITE_ENDPOINT: brand.appwrite.endpoint,
+  APPWRITE_PROJECT_ID: brand.appwrite.projectId,
+  APPWRITE_DATABASE_ID: brand.appwrite.databaseId,
+  APPWRITE_NAATS_COLLECTION_ID: brand.appwrite.naatsCollectionId,
+  APPWRITE_CHANNELS_COLLECTION_ID: brand.appwrite.channelsCollectionId,
+  APPWRITE_AUDIO_CACHE_COLLECTION_ID: brand.appwrite.audioCacheCollectionId,
   AUDIO_EXTRACTION_FUNCTION_URL: "",
   AUDIO_STREAMING_FUNCTION_URL: "",
   RAPIDAPI_KEY: "",
-  SEMANTIC_SEARCH_FUNCTION_URL: "",
+  SEMANTIC_SEARCH_FUNCTION_URL: brand.appwrite.semanticSearchFunctionUrl,
+  APPWRITE_VIEW_INCREMENT_FUNCTION_URL: "",
 };
 
 export const STATIC_FALLBACK_URLS = {
-  NAATS: process.env.EXPO_PUBLIC_STATIC_NAATS_URL || 
-    'https://raw.githubusercontent.com/SahilHasnain/anas-raza-attari/main/static-exports/naats-export.json',
-  CHANNELS: process.env.EXPO_PUBLIC_STATIC_CHANNELS_URL ||
-    'https://raw.githubusercontent.com/SahilHasnain/anas-raza-attari/main/static-exports/channels-export.json',
+  NAATS: process.env.EXPO_PUBLIC_STATIC_NAATS_URL || brand.static.naatsUrl,
+  CHANNELS: process.env.EXPO_PUBLIC_STATIC_CHANNELS_URL || brand.static.channelsUrl,
 };
 
 // Map Expo environment variables to shared config format with fallbacks
@@ -49,6 +54,8 @@ const env = {
   RAPIDAPI_KEY: process.env.EXPO_PUBLIC_RAPIDAPI_KEY || FALLBACK_CONFIG.RAPIDAPI_KEY,
   SEMANTIC_SEARCH_FUNCTION_URL:
     process.env.EXPO_PUBLIC_SEMANTIC_SEARCH_FUNCTION_URL || FALLBACK_CONFIG.SEMANTIC_SEARCH_FUNCTION_URL,
+  APPWRITE_VIEW_INCREMENT_FUNCTION_URL:
+    process.env.EXPO_PUBLIC_APPWRITE_VIEW_INCREMENT_FUNCTION_URL || FALLBACK_CONFIG.APPWRITE_VIEW_INCREMENT_FUNCTION_URL,
 };
 
 console.log("[DEBUG] Appwrite Config Env:", {

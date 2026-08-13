@@ -13,7 +13,7 @@ import type {
   IAppwriteService,
   Naat,
 } from "@naat-collection/shared";
-import { Client, Databases, Query } from "appwrite";
+import { Client, Databases, ExecutionMethod, Functions, Query } from "appwrite";
 
 export interface AppwriteServiceOptions {
   config: AppwriteConfig;
@@ -30,6 +30,7 @@ export interface AppwriteServiceOptions {
 export class AppwriteService implements IAppwriteService {
   private client: Client;
   private database: Databases;
+  private functions: Functions;
   private config: AppwriteConfig;
   private isInitialized: boolean = false;
   private onError?: (error: Error, context?: Record<string, any>) => void;
@@ -45,6 +46,7 @@ export class AppwriteService implements IAppwriteService {
     this.staticFallbackUrls = options.staticFallbackUrls;
     this.client = new Client();
     this.database = new Databases(this.client);
+    this.functions = new Functions(this.client);
   }
 
   /**
@@ -526,6 +528,35 @@ export class AppwriteService implements IAppwriteService {
         success: false,
         error: "Failed to load audio from storage.",
       };
+    }
+  }
+
+  /**
+   * Increments the in-app view count (appView) for a naat.
+   *
+   * Uses an Appwrite function for the server-side increment so the client
+   * never needs write access to the naats collection. This is a best-effort,
+   * fire-and-forget call — it never throws so playback is never affected.
+   */
+  async incrementAppView(naatId: string): Promise<void> {
+    if (!naatId) {
+      return;
+    }
+
+    try {
+      this.initialize();
+      await this.functions.createExecution({
+        functionId: "increment-naat-view",
+        body: JSON.stringify({ naatId }),
+        async: true,
+        method: ExecutionMethod.POST,
+      });
+    } catch (error) {
+      console.error("[Appwrite] incrementAppView failed:", error);
+      this.onError?.(error as Error, {
+        context: "incrementAppView",
+        naatId,
+      });
     }
   }
 }

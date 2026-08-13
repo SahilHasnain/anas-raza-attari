@@ -478,7 +478,7 @@ function shouldFilterVideo(isOfficial, title) {
     return false;
   }
 
-  // For non-official channels, only include videos with "Anas Raza Attari"
+  // For non-official channels, only include videos with "Owais Qadri" or "Owais Raza Qadri"
   const titleLower = title.toLowerCase();
 
   // Only 'O' starting variations allowed (no 'A' or 'U' variations)

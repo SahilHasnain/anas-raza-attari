@@ -2,7 +2,7 @@
  * Analyze Filter Impact
  *
  * This script analyzes which naats would be filtered out with the new filtering criteria:
- * - Only "Anas Raza Attari" should pass
+ * - Only "Owais Qadri" or "Owais Raza Qadri" should pass
  * - First letter must be 'O' (no 'A', 'U' variations)
  * - Spelling errors allowed but first letter must be 'O'
  */

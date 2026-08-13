@@ -130,7 +130,7 @@ git push
 
 # 3. Update .env
 FALLBACK_SOURCE=static_json
-STATIC_JSON_URL=https://cdn.jsdelivr.net/gh/SahilHasnain/anas-raza-attari@main/static-exports/radio-naats.json
+STATIC_JSON_URL=https://cdn.jsdelivr.net/gh/sahilhasnain/naat-collection@main/static-exports/radio-naats.json
 
 # 4. Restart container
 docker-compose restart

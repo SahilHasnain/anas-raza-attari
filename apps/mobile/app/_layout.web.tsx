@@ -15,17 +15,18 @@ import { Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import "../global.css";
 
-// Sentry (DISABLED — set enabled to true to re-enable)
 Sentry.init({
   dsn: process.env.EXPO_PUBLIC_SENTRY_DSN,
   debug: false,
-  enabled: false, // was: !__DEV__ — disabled across all environments
+  enabled: !__DEV__,
   tracesSampleRate: 1.0,
   integrations: [Sentry.reactNativeTracingIntegration()],
 });
 
 const navItems = [
   { href: "/home", label: "Home", icon: "grid-outline" },
+  { href: "/best", label: "Best", icon: "trophy-outline" },
+  { href: "/live", label: "Live", icon: "radio-outline" },
   { href: "/history", label: "History", icon: "time-outline" },
 ] as const;
 
@@ -58,7 +59,7 @@ function DesktopShell() {
         >
           <View style={{ marginBottom: 28 }}>
             <Text style={{ color: "#f6f7fb", fontSize: 26, fontWeight: "700" }}>
-              Anas Raza Attari
+              Owais Raza Qadri
             </Text>
           </View>
 
