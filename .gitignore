@@ -3,7 +3,8 @@
 # dependencies
 node_modules/
 apps/mobile/node_modules/
-
+logs/
+apps/mobile/logs/
 # Expo
 .expo/
 dist/
