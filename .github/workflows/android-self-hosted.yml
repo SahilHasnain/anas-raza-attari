@@ -30,18 +30,17 @@ jobs:
       EXPO_USE_METRO_WORKSPACE_ROOT: "1"
       APP_VARIANT: ${{ inputs.app_variant || 'production' }}
       EXPO_PUBLIC_APPWRITE_ENDPOINT: ${{ vars.EXPO_PUBLIC_APPWRITE_ENDPOINT || 'https://sgp.cloud.appwrite.io/v1' }}
-      EXPO_PUBLIC_APPWRITE_PROJECT_ID: ${{ vars.EXPO_PUBLIC_APPWRITE_PROJECT_ID || '69907afc003b9e3d9152' }}
-      EXPO_PUBLIC_APPWRITE_DATABASE_ID: ${{ vars.EXPO_PUBLIC_APPWRITE_DATABASE_ID || 'main-db' }}
-      EXPO_PUBLIC_APPWRITE_NAATS_COLLECTION_ID: ${{ vars.EXPO_PUBLIC_APPWRITE_NAATS_COLLECTION_ID || 'naats' }}
+      EXPO_PUBLIC_APPWRITE_PROJECT_ID: ${{ vars.EXPO_PUBLIC_APPWRITE_PROJECT_ID || '695bb97700213f4ef5dd' }}
+      EXPO_PUBLIC_APPWRITE_DATABASE_ID: ${{ vars.EXPO_PUBLIC_APPWRITE_DATABASE_ID || '695bba86001b50478ed4' }}
+      EXPO_PUBLIC_APPWRITE_NAATS_COLLECTION_ID: ${{ vars.EXPO_PUBLIC_APPWRITE_NAATS_COLLECTION_ID || '695bc8e70038db72df5b' }}
       EXPO_PUBLIC_APPWRITE_CHANNELS_COLLECTION_ID: ${{ vars.EXPO_PUBLIC_APPWRITE_CHANNELS_COLLECTION_ID || 'channels' }}
       EXPO_PUBLIC_APPWRITE_LIVE_RADIO_COLLECTION_ID: ${{ vars.EXPO_PUBLIC_APPWRITE_LIVE_RADIO_COLLECTION_ID || 'live_radio' }}
-      EXPO_PUBLIC_RADIO_FUNCTION_ENDPOINT: ${{ vars.EXPO_PUBLIC_RADIO_FUNCTION_ENDPOINT || '' }}
-      EXPO_PUBLIC_SEMANTIC_SEARCH_FUNCTION_URL: ${{ vars.EXPO_PUBLIC_SEMANTIC_SEARCH_FUNCTION_URL || '' }}
+      EXPO_PUBLIC_RADIO_FUNCTION_ENDPOINT: ${{ vars.EXPO_PUBLIC_RADIO_FUNCTION_ENDPOINT || 'https://698b307d001f4e3bb03e.sgp.appwrite.run' }}
+      EXPO_PUBLIC_SEMANTIC_SEARCH_FUNCTION_URL: ${{ vars.EXPO_PUBLIC_SEMANTIC_SEARCH_FUNCTION_URL || 'https://69a8e9000021d2eaafd9.sgp.appwrite.run' }}
       EXPO_PUBLIC_USE_SEMANTIC_SEARCH: ${{ vars.EXPO_PUBLIC_USE_SEMANTIC_SEARCH || 'false' }}
       EXPO_PUBLIC_DISABLE_SEARCH_SUGGESTIONS: ${{ vars.EXPO_PUBLIC_DISABLE_SEARCH_SUGGESTIONS || 'true' }}
-      # Sentry DISABLED — uncomment to re-enable
-      # EXPO_PUBLIC_SENTRY_DSN: ${{ vars.EXPO_PUBLIC_SENTRY_DSN || 'https://26f7852901dbe4c65a101e2300db1d8f@o4509954219966464.ingest.de.sentry.io/4510675297501264' }}
-      # SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      EXPO_PUBLIC_SENTRY_DSN: ${{ vars.EXPO_PUBLIC_SENTRY_DSN || 'https://26f7852901dbe4c65a101e2300db1d8f@o4509954219966464.ingest.de.sentry.io/4510675297501264' }}
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -107,21 +106,13 @@ jobs:
           EXPO_PUBLIC_SEMANTIC_SEARCH_FUNCTION_URL=${EXPO_PUBLIC_SEMANTIC_SEARCH_FUNCTION_URL}
           EXPO_PUBLIC_USE_SEMANTIC_SEARCH=${EXPO_PUBLIC_USE_SEMANTIC_SEARCH}
           EXPO_PUBLIC_DISABLE_SEARCH_SUGGESTIONS=${EXPO_PUBLIC_DISABLE_SEARCH_SUGGESTIONS}
-          # Sentry DISABLED — uncomment to re-enable
-          # EXPO_PUBLIC_SENTRY_DSN=${EXPO_PUBLIC_SENTRY_DSN}
-          # SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
+          EXPO_PUBLIC_SENTRY_DSN=${EXPO_PUBLIC_SENTRY_DSN}
+          SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
           EOF
 
       - name: Configure Android SDK path
         run: |
           printf "sdk.dir=%s\n" "$ANDROID_SDK_ROOT" > apps/mobile/android/local.properties
-
-      - name: Install CMake
-        run: |
-          yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --install "cmake;3.22.1" || true
-          echo "y" | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --licenses || true
-        env:
-          JAVA_HOME: /usr/lib/jvm/temurin-17-jdk-amd64
 
       - name: Decode keystore
         run: |
@@ -132,19 +123,21 @@ jobs:
         run: |
           echo "${{ secrets.PLAY_STORE_JSON_BASE64 }}" | base64 -d > /tmp/play-store-key.json
 
-      # Sentry DISABLED — uncomment to re-enable
-      # - name: Configure Sentry
-      #   run: |
-      #     cat > apps/mobile/android/sentry.properties <<'EOF'
-      #     defaults.url=https://sentry.io/
-      #     defaults.org=sahil-hasnain
-      #     defaults.project=ubaid-raza-naats
-      #     EOF
+      - name: Configure Sentry
+        run: |
+          cat > apps/mobile/android/sentry.properties <<'EOF'
+          defaults.url=https://sentry.io/
+          defaults.org=sahil-hasnain
+          defaults.project=ubaid-raza-naats
+          EOF
+
+      - name: Expo prebuild
+        run: npx expo prebuild
+        working-directory: apps/mobile
 
       - name: Build Android artifact
         env:
-          # Sentry DISABLED — uncomment to re-enable
-          # SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           ANDROID_KEYSTORE_PATH: /tmp/release.keystore
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
@@ -169,10 +162,9 @@ jobs:
       - name: Fastlane deploy
         if: ${{ env.APP_VARIANT == 'production' }}
         env:
-          # Sentry DISABLED — uncomment to re-enable
-          # SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SUPPLY_JSON_KEY: /tmp/play-store-key.json
-          ANDROID_APPLICATION_ID: com.anasrazaattari
+          ANDROID_APPLICATION_ID: com.owaisrazaqadri
           PLAY_TRACK: production
           SKIP_ANDROID_BUILD: "true"
           ANDROID_KEYSTORE_PATH: /tmp/release.keystore
